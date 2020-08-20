@@ -929,15 +929,13 @@ int main()
     int iP1 = ij.first, jP1 = ij.second;
     //runMC(HexGraph& h, vector<int> p1NodePlayed, vector<int> p2NodePlayed);
     p1.UpdateEdgeNodeList(g1, iP1, jP1);
-    if(p1.IfWon(g1)) break;
-
     ij = p2.Move(g1, hexBoard, p1);
     hexBoard.drawHexBoard();
 
+    if(p1.IfWon(g1)) break;
     int iP2 = ij.first, jP2 = ij.second;
     p2.UpdateEdgeNodeList(g1, iP2, jP2);
     if(p2.IfWon(g1)) break;
   }
   return 0;
 }
-
