@@ -1,7 +1,7 @@
-//Daniel Bai 8/13/2020
-//Initial version of Hex game, using Dijkstra shortest path algo to check who wins.
+//Daniel Bai 8/19/2020
+//Updated version of Hex game, using Monte Carlo to evaluate for best move for the computer
+//Board size of 3x3 to 11x11 supoorted
 
-//Daniel Bai 07/31/2020
 //Dijkstra's shortest path algorithm
 //Implemented using connectivity matrix
 //For undirected graph (edge matrix symmetric)
@@ -807,7 +807,7 @@ int Player::runMC(HexGraph& h, vector<int> p1NodePlayed, vector<int> p2NodePlaye
   cout << endl;
 
   srand(time(0));
-  int numMCRun = 399;
+  int numMCRun = 199;
   int bestMoveNode;
 
   vector<int> firstEdgeNodeList; secondEdgeNodeList;
@@ -928,15 +928,16 @@ int main()
     pair<int, int> ij = p1.Move(g1, hexBoard, p2);
     int iP1 = ij.first, jP1 = ij.second;
     //runMC(HexGraph& h, vector<int> p1NodePlayed, vector<int> p2NodePlayed);
-    //hexBoard.drawHexBoard();
     p1.UpdateEdgeNodeList(g1, iP1, jP1);
     if(p1.IfWon(g1)) break;
 
     ij = p2.Move(g1, hexBoard, p1);
     hexBoard.drawHexBoard();
+
     int iP2 = ij.first, jP2 = ij.second;
     p2.UpdateEdgeNodeList(g1, iP2, jP2);
     if(p2.IfWon(g1)) break;
   }
   return 0;
 }
+
